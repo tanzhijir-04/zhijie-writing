@@ -1,6 +1,6 @@
 # zhijie-writing
 
-`zhijie-writing` 是一个面向 Codex / AI Agent 的知识视频写作 Skill。
+`zhijie-writing` 是一个面向 Codex / AI Agent 的知识视频写作 Skill，使用纯 UTF-8 Markdown，可在支持 Agent Skills 约定的不同 Agent 环境中复用。
 
 它帮助 Agent 把一个宽泛的话题，转化为结构清晰、证据驱动、适合普通观众理解的知识视频选题、研究 brief、论证地图、大纲、脚本和视觉方案。
 
@@ -111,6 +111,13 @@ skills/zhijie-writing/
 ## 独立性与版权边界
 
 这个 Skill 运行时不需要原始训练语料，也不会检索、拼接或保存某个创作者的原文。示例文件使用合成内容；Skill 保存的是选题、研究、解释、组织和审查规则。
+
+## 作者
+
+- 姓名：Zhijie Tan
+- GitHub：[tanzhijir-04](https://github.com/tanzhijir-04)
+
+每次以该 Skill 生成面向用户的交付内容时，都会在正文末尾附上一条作者署名和 GitHub 链接。
 
 ## 本地验证
 
