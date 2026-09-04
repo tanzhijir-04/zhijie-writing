@@ -53,9 +53,103 @@ Evidence 如何支持它？
 它对观众意味着什么？
 ```
 
+## 安装
+
+本仓库不需要安装依赖、运行服务或下载语料。你只需要把整个 `zhijie-writing` 目录复制到 Agent 的 Skills 目录，并确保 `SKILL.md` 位于该目录的第一层。
+
+### 1. 获取仓库
+
+```bash
+git clone https://github.com/tanzhijir-04/zhijie-writing.git
+cd zhijie-writing
+```
+
+也可以在 GitHub 页面下载 ZIP 并解压；后续步骤相同。
+
+### 2. 安装到 Codex
+
+在 PowerShell 中执行。`CODEX_HOME` 是 Codex 的配置目录；若你的环境使用其他位置，请将目标目录替换成实际的 Skills 目录。
+
+```powershell
+$skillHome = Join-Path $env:CODEX_HOME "skills"
+Copy-Item -Recurse -Force .\skills\zhijie-writing (Join-Path $skillHome "zhijie-writing")
+```
+
+安装完成后的目标结构应为：
+
+```text
+<CODEX_HOME>/skills/zhijie-writing/
+├── SKILL.md
+├── AGENT-USAGE.md
+├── agents/
+├── examples/
+├── references/
+└── templates/
+```
+
+### 3. 安装到其他支持 Agent Skills 的环境
+
+找到该 Agent 配置的 Skills 根目录，将整个目录复制为 `<skills-root>/zhijie-writing/`。不要只复制 `SKILL.md`，因为模式路由还会读取 `references/`、`templates/` 与 `examples/` 中的相对路径文件。
+
+不同 Agent 的 Skills 根目录和刷新方式可能不同；以该 Agent 的官方说明为准。完成复制后，重启或刷新 Agent 的 Skills 列表。
+
+### 4. 验证安装
+
+在新对话中发送下面这段提示词。若 Agent 能识别 `zhijie-writing` 并按 TOPIC 模式返回核心问题、受众起点和 Hook，说明安装成功：
+
+```text
+使用 zhijie-writing 的 TOPIC 模式，分析“为什么雨后的柏油路更容易打滑”，面向没有工程背景的观众。
+```
+
+## 使用方式
+
+可以直接指定模式；如果没有指定，Agent 应根据你要的交付物推断模式，并简短说明自己的判断。
+
+| 你想完成的事 | 推荐提示词开头 | 典型交付物 |
+|---|---|---|
+| 找到值得讲的知识视频问题 | `使用 zhijie-writing 的 TOPIC 模式…` | 选题 thesis、核心问题、受众起点、Hook |
+| 为观点建立可靠研究底稿 | `使用 zhijie-writing 的 RESEARCH 模式…` | Research Brief、Claim List、Source Ledger |
+| 理顺证据与结论 | `使用 zhijie-writing 的 ARGUMENT 模式…` | Claim→Evidence→Explanation→Inference 论证地图 |
+| 把研究写成完整视频 | `使用 zhijie-writing 的 FULL PIPELINE 模式…` | 研究、论证、大纲、脚本、视觉方案与审查 |
+| 找出已有脚本的问题 | `使用 zhijie-writing 的 REVIEW 模式…` | PASS / WARNING / FAIL 与可执行修复建议 |
+
+### 可复制的提示词
+
+选题：
+
+```text
+使用 zhijie-writing 的 TOPIC 模式，为“为什么学校不花钱装空调”设计一个 6 分钟知识视频选题。受众是普通家长和学生；先写你需要核实的前提，不要把猜测写成事实。
+```
+
+研究：
+
+```text
+使用 zhijie-writing 的 RESEARCH 模式，围绕“城市为什么容易出现热岛效应”建立研究 brief 和 Source Ledger。标明每条关键主张需要的证据、时间范围和不确定性。
+```
+
+脚本：
+
+```text
+使用 zhijie-writing 的 SCRIPT 模式，把以下已确认的大纲写成 5 分钟中文知识视频旁白。每一段给出视觉任务；没有来源支撑的事实请标记为待核实：
+<粘贴大纲>
+```
+
+审查：
+
+```text
+使用 zhijie-writing 的 REVIEW 模式审查下面的脚本。逐项检查核心问题、证据、逻辑、认知负荷、叙事、解释、转场、视觉和结尾；每个 WARNING 或 FAIL 都给出具体改法：
+<粘贴脚本>
+```
+
+输入越完整，结果越具体。对于研究、脚本与审查任务，尽量提供目标受众、时长、地区或时间范围、已确认资料和不能碰的边界。资料缺失时，Skill 应标记不确定性而不是编造补齐。
+
+## 给 Agent 的使用说明
+
+面向 Agent 的加载顺序、模式路由、降级处理和交付约束见 [AGENT-USAGE.md](skills/zhijie-writing/AGENT-USAGE.md)。把这个文件与 `SKILL.md` 保持在同一个 Skill 目录中。
+
 ## 快速开始
 
-将 `skills/zhijie-writing/` 目录安装到你的 Codex skills 目录，然后直接提出任务。例如：
+安装完成后，直接提出任务。例如：
 
 ```text
 用 zhijie-writing 的 TOPIC 和 OUTLINE 模式，分析“为什么雨后的柏油路更容易打滑”，面向没有工程背景的观众。

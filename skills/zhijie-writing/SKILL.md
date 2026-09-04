@@ -9,6 +9,10 @@ Create an explanatory video that leaves the viewer with a usable model, not a to
 
 `observable outcome → information gap → minimum model → evidence/example → constraint or exception → answer with limits`
 
+## Agent execution guide
+
+For installation, discovery, loading order, mode selection, fallback behavior, and deliverable rules, read [AGENT-USAGE.md](AGENT-USAGE.md). Resolve that file and every linked reference relative to this Skill directory.
+
 ## Operating rules
 
 1. Preserve the user's scope and safety constraints. Do not imply that a surprising topic is automatically worthwhile.
